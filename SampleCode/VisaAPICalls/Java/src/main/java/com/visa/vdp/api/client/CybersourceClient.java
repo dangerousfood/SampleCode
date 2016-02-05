@@ -4,7 +4,8 @@ import java.util.Map;
 
 import org.apache.commons.lang3.RandomStringUtils;
 import org.apache.commons.lang3.StringUtils;
-import org.apache.log4j.Logger;
+//import org.apache.log4j.Logger;
+import java.util.logging.Logger;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.visa.vdp.util.XPayTokenGeneration;
@@ -16,7 +17,7 @@ import com.visa.vdp.util.XPayTokenGeneration;
  */
 public class CybersourceClient extends AbstractClient{
 
-	final static Logger logger = Logger.getLogger(VisaTokenServiceClient.class);
+	final static Logger logger = Logger.getLogger(CybersourceClient.class.getName());
 	
     static final String API_KEY = "{put your api key here}";
     static final String SHARED_SECRET = "{put your shared secret here}";

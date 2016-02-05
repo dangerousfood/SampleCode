@@ -8,7 +8,8 @@ import java.util.Map;
 import org.apache.commons.codec.binary.Base64;
 import org.apache.commons.codec.digest.DigestUtils;
 import org.apache.commons.lang3.RandomStringUtils;
-import org.apache.log4j.Logger;
+//import org.apache.log4j.Logger;
+import java.util.logging.Logger;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.visa.vdp.util.JSONWebUtility;
@@ -23,7 +24,7 @@ import com.visa.vdp.util.XPayTokenGeneration;
  */
 public class VisaTokenServiceClient extends AbstractClient {
 
-	final static Logger logger = Logger.getLogger(VisaTokenServiceClient.class);
+	final static Logger logger = Logger.getLogger(VisaTokenServiceClient.class.getName());
 	
 	private static String API_KEY = "{put your api key here}";
 	private static String SHARED_SECRET ="{put your shared secret here}8";
@@ -65,10 +66,10 @@ public class VisaTokenServiceClient extends AbstractClient {
 				+ "\"state\":\"CA\", \"zip\":\"94404\", \"country\":\"US\" }, \"name\":\"BillEvans\", \"expirationDate\":{ "
 				+ "\"month\":\""+getCurrentMonth()+"\", \"year\":\""+getNextYear()+"\" } }";
 
-		logger.debug("paymentInstrument: "+pcndata);
+		logger.info("paymentInstrument: "+pcndata);
 		
 		String riskData = "[{\"name\":\"encCvv2\",\"value\":\""+JSONWebUtility.createJwe(CARD_VERIFICATION_VALUE, ENCRYPTION_API_KEY, ENCRYPTION_SHARED_SECRET)+"\"}]";
-		logger.debug("riskData: "+riskData);
+		logger.info("riskData: "+riskData);
 		
 		
 		
@@ -123,7 +124,7 @@ public class VisaTokenServiceClient extends AbstractClient {
 			String encryptedToken = (String)tokenInfo.get("encTokenInfo");
 			// decrypt the token;
 			String decryptedValue = JSONWebUtility.decryptJwe(encryptedToken, ENCRYPTION_SHARED_SECRET);
-			logger.debug("Unencrypted encTokenInfo : "+decryptedValue);
+			logger.info("Unencrypted encTokenInfo : "+decryptedValue);
 					
 			/*
 			 * VTS PaymentData API allows clients' wallet providers to provision a token and cryptogram for a Given Token.
@@ -273,8 +274,6 @@ public class VisaTokenServiceClient extends AbstractClient {
 			apiNameURI =  VTS_API_RES_BASE_URI +  contextURI + resourcePath+ "?apikey=" + API_KEY;
 			response_Payload = getResponseForXPayToken(apiNameURI, xpaytoken,null,"GET",crId);
 			
-		} catch (SignatureException e) {
-			e.printStackTrace();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

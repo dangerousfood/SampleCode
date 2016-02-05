@@ -1,0 +1,27 @@
+group 'com.visa.dvp'
+version '0.0.1-SNAPSHOT'
+
+apply plugin: 'java'
+apply plugin: 'application'
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+mainClassName = "com.visa.vdp.api.client.CybersourceClient"
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile 'org.apache.httpcomponents:httpcomponents-client:4.5.1'
+    compile 'org.apache.commons:commons-lang3:3.0'
+    compile 'com.fasterxml.jackson.core:jackson-databind:2.7.1-1'
+    compile 'commons-codec:commons-codec:1.10'
+    compile 'org.apache.httpcomponents:httpcore:4.4.4'
+    compile 'org.apache.httpcomponents:httpclient:4.5.1'
+}
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '2.10'
+}

@@ -2,3 +2,10 @@ target
 **/target
 pom.xml.versionsBackup
 /.project
+
+# Gradle
+.gradle
+build
+# IntelliJ IDEA
+*.iml
+.idea

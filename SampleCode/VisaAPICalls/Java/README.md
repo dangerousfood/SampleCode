@@ -10,6 +10,10 @@ Running the Cybersource and Visa Checkout sample code
 8. Compile and run the sample code
 9. You should see response from the respective API calls
 
+1. ./gradlew run
+
+
+
 Running the VisaDirect sample code
 ===================================================== 
 1. Download and install httpcomponents library from https://hc.apache.org/httpcomponents-client-4.5.x/index.html

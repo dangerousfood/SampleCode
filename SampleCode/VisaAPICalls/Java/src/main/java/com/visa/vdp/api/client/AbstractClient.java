@@ -15,7 +15,8 @@ import java.util.Vector;
 import javax.net.ssl.HttpsURLConnection;
 
 import org.apache.commons.lang3.StringUtils;
-import org.apache.log4j.Logger;
+//import org.apache.log4j.Logger;
+import java.util.logging.Logger;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
@@ -25,7 +26,7 @@ import com.fasterxml.jackson.databind.SerializationFeature;
 
 public class AbstractClient {
 	
-	final static Logger logger = Logger.getLogger(AbstractClient.class);
+	final static Logger logger = Logger.getLogger(AbstractClient.class.getName());
 
 	static final String[] VISA_PREFIX_LIST = new String[] { "4539","4556", "4916", "4532", "4929", "40240071", "4485", "4716", "4" };
 	
@@ -41,10 +42,10 @@ public class AbstractClient {
 				logger.info("requestBody: "+mapper.writeValueAsString(tree));
 			} catch (JsonProcessingException e) {
 				// Ignore any Exceptions
-				logger.error(e.getMessage());
+				logger.severe(e.getMessage());
 			} catch (IOException e) {
 				// Ignore any Exceptions
-				logger.error(e.getMessage());
+				logger.severe(e.getMessage());
 			}
 		}
 		
@@ -59,10 +60,10 @@ public class AbstractClient {
 				logger.info("responseBody: "+mapper.writeValueAsString(tree));
 			} catch (JsonProcessingException e) {
 				// Ignore any Exceptions
-				logger.error(e.getMessage());
+				logger.severe(e.getMessage());
 			} catch (IOException e) {
 				// Ignore any Exceptions
-				logger.error(e.getMessage());
+				logger.severe(e.getMessage());
 			}
 		}
 	}
@@ -164,8 +165,6 @@ public class AbstractClient {
 	  /**
 		 * Generate check digit for a number string.
 		 * 
-		 * @param numberString
-		 * @param noCheckDigit
 		 *            Whether check digit is present or not. True if no check Digit
 		 *            is appended.
 		 * @return
